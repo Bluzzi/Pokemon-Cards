@@ -1,6 +1,21 @@
 <svelte:head>
-    <title>Pokémon Cards - Sets</title>
+    <title>Pokemon Cards - Sets</title>
 </svelte:head>
 
-<img src="/img/icon.png" alt="logo">
-<p>Bienvenue sur Pokémon Cards !</p>
+<div class="first">
+    <img src="/img/icon.png" alt="logo">
+    <p>Bienvenue sur Pokemon Cards !</p>
+</div>
+
+<style>
+    .first {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+        img {
+            height: 100px;
+        }
+    }
+</style>
