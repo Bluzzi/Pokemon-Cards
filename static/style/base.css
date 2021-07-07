@@ -4,6 +4,8 @@ body {
     font-family: "Quicksend", sans-serif;
 
     max-height: 100vh;
+
+    overflow: hidden;
 }
 
 /* width */
