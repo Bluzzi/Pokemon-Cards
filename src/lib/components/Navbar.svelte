@@ -3,8 +3,7 @@
 
     // Pages :
     const navItems = [
-        {name: "Home", route: "/"},
-        {name: "Components", route: "/components"}
+        {name: "Home", route: "/"}
     ];
 
     // Get the current active page (for the first call) :
@@ -20,7 +19,7 @@
 </script>
 
 <nav>
-    <img src="/img/favicon.png" alt="logo">
+    <img src="/img/icon.png" alt="logo">
 
     <div class="links">
         {#each navItems as item}
@@ -39,7 +38,7 @@
 
         height: 60px;
 
-        background-color: $color-gray;
+        background-color: $color-primary;
 
         img {
             height: 80%;
@@ -49,12 +48,12 @@
         a {
             font-size: 1.3em;
             text-decoration: none;
-            color: black;
+            color: $color-white;
             
             margin-left: 15px;
 
             &:hover, &.active {
-                border-bottom: solid 4px $color-primary;
+                border-bottom: solid 4px $color-white;
             }
         }
     }
