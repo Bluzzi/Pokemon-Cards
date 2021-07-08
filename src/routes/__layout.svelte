@@ -23,11 +23,6 @@
     import Navbar from "$lib/components/Navbar.svelte";
     import SerieSet from "$lib/components/elements/SerieSets.svelte";
     import type { ISet } from "$lib/pokemontcg/interfaces/Set";
-    import { navigating } from "$app/stores";
-
-    let loaded = true;
-
-    navigating.subscribe(run => loaded = run ? true : false);
 
     export let sets: ISet[];
     const setsBySeries: Record<string, ISet[]> = {};
@@ -51,11 +46,7 @@
             <SerieSet serie={serie} sets={setsBySeries[serie]} isOpen={i === 0}/>
         {/each}
     </div>
-    <div class="cards {loaded ? "no-scroll" : "scroll"}">
-        <div class={loaded ? "loading" : "hidden"}>
-            <img src="/img/loading.svg" alt="loading">
-        </div>
-
+    <div class="cards">
         <slot></slot>
     </div>
 </div>
@@ -82,6 +73,8 @@
         }
 
         .cards {
+            overflow-y: scroll;
+
             width: inherit;
 
             @media (max-width: $responsive-bp-tablet){
@@ -92,22 +85,6 @@
             justify-content: center;
 
             position: relative;
-
-            .loading {
-                height: 100%;
-                width: 100%;
-
-                background-color: white;
-
-                position: absolute;
-                top: 0; left: 0;
-
-                z-index: 2;
-
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
         }
     }
 
@@ -127,17 +104,5 @@
         a {
             text-decoration: underline;
         }
-    }
-
-    .hidden {
-        display: none;
-    }
-
-    .scroll {
-        overflow-y: scroll;
-    }
-
-    .no-scroll {
-        overflow-y: hidden;
     }
 </style>
