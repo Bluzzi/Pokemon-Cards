@@ -1,5 +1,6 @@
 <script>
     import type { ICard } from "$lib/pokemontcg/interfaces/Card";
+    import { fade } from "svelte/transition";
 
     export let card: ICard;
 
@@ -7,7 +8,7 @@
         "/" + card.set.id.toUpperCase() + "_FR_" + card.number + ".png";
 </script>
 
-<img src={card.images.small} alt="{card.name} card" loading="lazy">
+<img src={card.images.small} alt="{card.name} card" loading="lazy" transition:fade>
 
 <style>
     img {
