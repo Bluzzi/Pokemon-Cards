@@ -1,10 +1,16 @@
 <script>
     import type { ISet } from "$lib/pokemontcg/interfaces/Set";
     import { fly } from "svelte/transition";
+    import { currentSet, cards } from "$lib/stores/Store";
 
     export let serie: string;
     export let sets: ISet[];
     export let isOpen = false;
+
+    function updateSet(set: ISet){
+        currentSet.set(set);
+        cards.set([]);
+    }
 </script>
 
 <div class="serie">
@@ -16,7 +22,7 @@
     {#if isOpen}
         {#each sets as set}
             <p transition:fly={{y: -15, duration: 500}}>
-                <a href="/set/{set.id}">{set.name}</a>
+                <a on:click={() => updateSet(set)} href="/set/{set.id}">{set.name}</a>
             </p>
         {/each}
     {/if}
