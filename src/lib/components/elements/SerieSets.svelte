@@ -22,7 +22,7 @@
     {#if isOpen}
         {#each sets as set}
             <p transition:fly={{y: -15, duration: 500}}>
-                <a on:click={() => updateSet(set)} href="/set/{set.id}">{set.name}</a>
+                <a class={$currentSet === set ? "active" : ""} on:click={() => updateSet(set)} href="/set/{set.id}">{set.name}</a>
             </p>
         {/each}
     {/if}
@@ -63,6 +63,10 @@
                 color: $color-gray;
 
                 &:hover {
+                    text-decoration: underline;
+                }
+
+                &.active {
                     text-decoration: underline;
                 }
             }
