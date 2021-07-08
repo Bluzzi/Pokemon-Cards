@@ -62,12 +62,8 @@
                 text-decoration: none;
                 color: $color-gray;
 
-                &:hover {
-                    text-decoration: underline;
-                }
-
-                &.active {
-                    text-decoration: underline;
+                &:hover, &.active {
+                    border-bottom: 4px solid $color-yellow;
                 }
             }
         }
