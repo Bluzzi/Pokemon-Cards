@@ -1,17 +1,19 @@
 <script context="module">
-	export function load({error, status}){
+	import type { LoadOutput } from "@sveltejs/kit";
+
+	export function load({ error, status }: LoadOutput){
 		return {
 			props: {
-                errorCode: status,
-				message: error.message.toLowerCase()
+				errorCode: status,
+				message: typeof error === "string" ? error : error.message.toLowerCase()
 			}
 		};
 	}
 </script>
 
 <script>
-	export let errorCode;
-    export let message;
+	export let errorCode: number;
+	export let message: string;
 </script>
 
 <div class="error">
