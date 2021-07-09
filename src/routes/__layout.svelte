@@ -84,8 +84,6 @@
 
             display: flex;
             justify-content: center;
-
-            position: relative;
         }
     }
 
