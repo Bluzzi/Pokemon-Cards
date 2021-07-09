@@ -1,5 +1,6 @@
 import sveltePreprocess from "svelte-preprocess";
 import autoprefixer from "autoprefixer";
+import adapter from "@sveltejs/adapter-static";
 import node from "@sveltejs/adapter-node";
 
 /** @type {import('@sveltejs/kit').Config} */
@@ -18,8 +19,8 @@ const config = {
 		}
 	}),
 	kit: {
-		target: "#svelte",
-		adapter: node()
+		adapter: adapter()
+		//adapter: node()
 	}
 };
 
