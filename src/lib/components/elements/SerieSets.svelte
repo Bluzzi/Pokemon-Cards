@@ -2,11 +2,20 @@
     import type { ISet } from "$lib/pokemontcg/interfaces/Set";
     import { fly } from "svelte/transition";
     import { currentSet, cards } from "$lib/stores/Store";
+    import { onDestroy } from "svelte";
 
     export let serie: string;
     export let sets: ISet[];
     export let isOpen = false;
 
+    const unSubscribe = currentSet.subscribe(value => {
+        sets.forEach(set => {
+            if(value && value.id === set.id) isOpen = true;
+        });
+    });
+
+    onDestroy(unSubscribe);
+    
     function updateSet(set: ISet){
         currentSet.set(set);
         cards.set([]);
@@ -22,7 +31,12 @@
     {#if isOpen}
         {#each sets as set}
             <p transition:fly={{y: -15, duration: 500}}>
-                <a class={$currentSet === set ? "active" : ""} on:click={() => updateSet(set)} href="/set/{set.id}">{set.name}</a>
+                <a 
+                class={$currentSet && $currentSet.id === set.id ? "active" : ""} 
+                on:click={() => updateSet(set)} 
+                href="/set/{set.id}">
+                    {set.name}
+                </a>
             </p>
         {/each}
     {/if}
