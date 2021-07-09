@@ -23,7 +23,7 @@
     // If the visitor has accessed this page without going through the navigation, 
     // an additional request must be made to obtain the set information :
     if(!$currentSet){
-        (async () => currentSet.set((await jsonFetch(Endpoints.sets + "/" + setId)).data))();
+        (async () => currentSet.set((await jsonFetch<any>(Endpoints.sets + "/" + setId)).data))();
     }
 
     // Calls on every page load, not just the first one :
@@ -46,7 +46,7 @@
     };
 
     async function loadCards(page = 1){
-        jsonFetch(Endpoints.cards + "?page=" + page + "&pageSize=" + pageSize + "&q=set.id:" + setId)
+        jsonFetch<any>(Endpoints.cards + "?page=" + page + "&pageSize=" + pageSize + "&q=set.id:" + setId)
         .then(json => {
             cards.update(cards => cards.concat(json.data));
 
