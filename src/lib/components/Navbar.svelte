@@ -1,21 +1,22 @@
 <script>
-    import { onMount } from "svelte";
+    import { onDestroy, onMount } from "svelte";
+    import { navigating } from "$app/stores";
 
     // Pages :
     const navItems = [
         {name: "Home", route: "/"}
     ];
 
-    // Get the current active page (for the first call) :
+    // Get current active page :
     let currentPage = "";
 
     onMount(() => currentPage = location.pathname);
 
-    // Function for update active page :
-    function changeActive(element: EventTarget){
-        document.getElementsByClassName("active")[0].classList.remove("active");
-        (element as HTMLLinkElement).classList.add("active");
-    }
+    const unSubscribe = navigating.subscribe(value => {
+        if(value) currentPage = value.to.path;
+    });
+
+    onDestroy(unSubscribe);
 </script>
 
 <nav>
@@ -23,7 +24,7 @@
 
     <div class="links">
         {#each navItems as item}
-            <a href={item.route} class={currentPage === item.route ? "active" : ""} on:click={event => changeActive(event.target)}>{item.name}</a>    
+            <a href={item.route} class={currentPage === item.route ? "active" : ""}>{item.name}</a>    
         {/each}
     </div>
 </nav>
