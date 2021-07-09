@@ -1,4 +1,14 @@
 <script context="module">
+    import type { LoadInput } from "@sveltejs/kit";
+
+    export async function load({ page }: LoadInput){
+        return {
+            props: {
+                setId: page.params.id,
+            }
+        }
+    }
+</script>
     import Endpoints from "$lib/pokemontcg/Endpoints";
 
     export async function load({page, fetch, session, context}){
