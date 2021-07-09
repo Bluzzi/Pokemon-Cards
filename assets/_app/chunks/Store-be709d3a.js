@@ -1,0 +1,1 @@
+import{C as s}from"./vendor-b580bf66.js";const e="https://api.pokemontcg.io/v2/";var t={cards:e+"cards",sets:e+"sets",types:e+"types",subTypes:e+"subtypes",superTypes:e+"supertypes",rarities:e+"rarities"};const p=s(),r=s([]);export{t as E,r as a,p as c};
