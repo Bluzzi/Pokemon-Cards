@@ -15,10 +15,12 @@
     import { jsonFetch } from "$lib/utils/Fetch";
     import Endpoints from "$lib/pokemontcg/Endpoints";
     import { currentSet, cards } from "$lib/stores/Store";
-    import { onMount } from "svelte";
+    import { afterUpdate, onMount } from "svelte";
 
     // Get props :
     export let setId: string;
+
+    let cardsDiv: HTMLDivElement;
 
     // If the visitor has accessed this page without going through the navigation, 
     // an additional request must be made to obtain the set information :
@@ -33,6 +35,12 @@
     // because Svelte's on:scroll event does not work on an overflow-y div :
     onMount(() => {
         (document.querySelector(".cards") as HTMLDivElement).onscroll = scrollLoader;
+    });
+
+    afterUpdate(() => {
+        if(!$cards.length && $currentSet && setId === $currentSet.id){
+            cardsDiv.scrollTo(0, 0);
+        }
     });
 
     // Functions :
@@ -81,7 +89,7 @@
         <img src={$currentSet.images.logo} alt="serie logo" class="header">
     {/if}
 
-    <div class="cards">
+    <div class="cards" bind:this={cardsDiv}>
         {#each $cards as card}
             <Card card={card}/>
         {/each}
