@@ -1,20 +1,21 @@
 <script context="module">
     import Endpoints from "$lib/pokemontcg/Endpoints";
+    import { jsonFetch } from "$lib/utils/Fetch";
 
-	export async function load({ page, fetch, session, context }){
-        const res = await fetch(Endpoints.sets);
+	export async function load(){
+        try {
+            const json = await jsonFetch(Endpoints.sets);
 
-        if(res.ok){
             return {
                 props: {
-                    sets: (await res.json()).data
+                    sets: json.data
                 }
             }
-        }
-        
-        return {
-            status: res.status,
-            error: new Error("Pokémon API don't work")
+        } catch(err){
+            return {
+                status: 400,
+                error: new Error(err)
+            }
         }
 	}
 </script>
