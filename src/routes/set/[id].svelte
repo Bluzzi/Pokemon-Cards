@@ -77,7 +77,7 @@
 </svelte:head>
 
 <div class="serie">
-    {#if $currentSet?.images?.logo}
+    {#if $currentSet}
         <img src={$currentSet.images.logo} alt="serie logo" class="header">
     {/if}
 
