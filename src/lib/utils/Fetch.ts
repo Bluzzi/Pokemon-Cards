@@ -1,4 +1,4 @@
-export async function jsonFetch(link: string, request: RequestInit = {}) : Promise<any> {
+export async function jsonFetch<T>(link: string, request: RequestInit = {}) : Promise<T> {
     const response = await fetch(link, request);
 
     if(response.ok){
