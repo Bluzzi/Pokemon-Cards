@@ -1,0 +1,1 @@
+import{C as s}from"./vendor-e99acf4a.js";async function t(s,t={}){const e=await fetch(s,t);if(e.ok)return await e.json();throw new Error(s+" request failed")}const e="https://api.pokemontcg.io/v2/";var a={cards:e+"cards",sets:e+"sets",types:e+"types",subTypes:e+"subtypes",superTypes:e+"supertypes",rarities:e+"rarities"};const r=s(),o=s([]);export{a as E,o as a,r as c,t as j};
