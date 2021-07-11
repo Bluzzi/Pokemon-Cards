@@ -16,6 +16,7 @@
     import Endpoints from "$lib/pokemontcg/Endpoints";
     import { currentSet } from "$lib/stores/Store";
     import type { ICard } from "$lib/pokemontcg/interfaces/Card";
+    import { fly } from "svelte/transition";
 
     interface INextPage {
         end: boolean,
@@ -112,15 +113,15 @@
 <div class="serie" on:scroll={scrollLoader} bind:this={serieDiv}>
     <p id="tgm">{currentCardCount}/{totalCard}</p>
 
-    {#if $currentSet}
-        <img src={$currentSet.images.logo} alt="serie logo" class="header">
+    {#if $currentSet && currentCardCount > 0}
+        <img src={$currentSet.images.logo} alt="serie logo" class="header" in:fly={{ y: -200 }}>
     {/if}
 
     <div class="cards" bind:this={cardsDiv}>
         <!-- Card place -->
     </div>
 
-    <div class={"load " + (currentCardCount < totalCard ? "" : "not-active")}>
+    <div class={"load " + (currentCardCount < totalCard && currentCardCount > 0 ? "" : "not-active")}>
         <img src="/img/loading.svg" alt="loading">    
     </div>
 </div>
