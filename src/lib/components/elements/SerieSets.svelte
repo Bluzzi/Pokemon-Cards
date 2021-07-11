@@ -8,13 +8,13 @@
     export let sets: ISet[];
     export let isOpen = false;
 
-    const unSubscribe = currentSet.subscribe(value => {
+    const unSubscriber = currentSet.subscribe(value => {
         sets.forEach(set => {
             if(value && value.id === set.id) isOpen = true;
         });
     });
 
-    onDestroy(unSubscribe);
+    onDestroy(unSubscriber);
     
     function updateSet(set: ISet){
         currentSet.set(set);
