@@ -63,9 +63,6 @@
         // Remove old cards :
         if(cardsDiv) cardsDiv.innerHTML = "";
 
-        // Scroll to the page top :
-        if(serieDiv) serieDiv.scrollTo(0, 0);
-
         // Load new cards :
         loadCards();
     }
