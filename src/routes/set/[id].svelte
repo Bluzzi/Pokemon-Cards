@@ -78,7 +78,8 @@
                 json.data.forEach((element: ICard) => {
                     new Card({
                         target: cardsDiv, 
-                        props: { card: element }
+                        props: { card: element },
+                        intro: true
                     });
                 });
             }
