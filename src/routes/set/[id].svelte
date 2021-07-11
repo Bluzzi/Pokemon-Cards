@@ -111,8 +111,6 @@
 </svelte:head>
 
 <div class="serie" on:scroll={scrollLoader} bind:this={serieDiv}>
-    <p id="tgm">{currentCardCount}/{totalCard}</p>
-
     {#if $currentSet && currentCardCount > 0}
         <img src={$currentSet.images.logo} alt="serie logo" class="header" in:fly={{ y: -200 }}>
     {/if}
@@ -135,15 +133,6 @@
         width: 100%;
 
         overflow-y: scroll;
-
-        #tgm {
-            position: fixed;
-
-            top: 0;
-            left: 10px;
-
-            background-color: $color-yellow;
-        }
 
         .header {
             margin: 40px 0;
