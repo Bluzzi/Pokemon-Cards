@@ -47,7 +47,7 @@
             <SerieSet serie={serie} sets={setsBySeries[serie]} isOpen={i === 0}/>
         {/each}
     </div>
-    <div class="cards">
+    <div class="page">
         <slot></slot>
     </div>
 </div>
@@ -73,9 +73,7 @@
             margin: 0;
         }
 
-        .cards {
-            overflow-y: scroll;
-
+        .page {
             width: inherit;
 
             @media (max-width: $responsive-bp-tablet){
