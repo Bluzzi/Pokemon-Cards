@@ -15,7 +15,7 @@
     import Card from "$lib/components/elements/Card.svelte";
     import { jsonFetch } from "$lib/utils/Fetch";
     import Endpoints from "$lib/pokemontcg/Endpoints";
-    import { currentSet, cards } from "$lib/stores/Store";
+    import { currentSet } from "$lib/stores/Store";
     import { afterUpdate, onMount } from "svelte";
     import type { ICard } from "$lib/pokemontcg/interfaces/Card";
 
