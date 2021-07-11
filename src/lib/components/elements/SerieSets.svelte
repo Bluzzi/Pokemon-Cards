@@ -1,7 +1,7 @@
 <script>
     import type { ISet } from "$lib/pokemontcg/interfaces/Set";
     import { fly } from "svelte/transition";
-    import { currentSet, cards } from "$lib/stores/Store";
+    import { currentSet } from "$lib/stores/Store";
     import { onDestroy } from "svelte";
 
     export let serie: string;
@@ -18,7 +18,6 @@
     
     function updateSet(set: ISet){
         currentSet.set(set);
-        cards.set([]);
     }
 </script>
 

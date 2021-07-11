@@ -5,6 +5,7 @@
         return {
             props: {
                 setId: page.params.id,
+                cardsList: []
             }
         }
     }
@@ -16,9 +17,11 @@
     import Endpoints from "$lib/pokemontcg/Endpoints";
     import { currentSet, cards } from "$lib/stores/Store";
     import { afterUpdate, onMount } from "svelte";
+    import type { ICard } from "$lib/pokemontcg/interfaces/Card";
 
     // Get props :
     export let setId: string;
+    export let cardsList: ICard[];
 
     let cardsDiv: HTMLDivElement;
 
@@ -38,7 +41,7 @@
     });
 
     afterUpdate(() => {
-        if(!$cards.length && $currentSet && setId === $currentSet.id){
+        if(!cardsList.length && $currentSet && setId === $currentSet.id){
             cardsDiv.scrollTo(0, 0);
         }
     });
@@ -56,11 +59,11 @@
     async function loadCards(page = 1){
         jsonFetch<any>(Endpoints.cards + "?page=" + page + "&pageSize=" + pageSize + "&q=set.id:" + setId)
         .then(json => {
-            cards.update(cards => cards.concat(json.data));
+            cardsList = cardsList.concat(json.data);
 
             totalCard = json.totalCount;
             nextPage = {
-                end: $cards.length >= totalCard,
+                end: cardsList.length >= totalCard,
                 next: json.page + 1,
                 isLoaded: false
             };
@@ -85,16 +88,18 @@
 </svelte:head>
 
 <div class="serie">
+    <p id="tgm">{cardsList.length}</p>
+
     {#if $currentSet}
         <img src={$currentSet.images.logo} alt="serie logo" class="header">
     {/if}
 
     <div class="cards" bind:this={cardsDiv}>
-        {#each $cards as card}
+        {#each cardsList as card}
             <Card card={card}/>
         {/each}
 
-        {#if $cards.length < totalCard}
+        {#if cardsList.length < totalCard}
             <div class="load">
                 <img src="/img/loading.svg" alt="loading">    
             </div>
@@ -107,7 +112,16 @@
         display: flex;
         align-items: center;
         flex-direction: column;
-        
+
+        #tgm {
+            position: fixed;
+
+            top: 0;
+            left: 10px;
+
+            background-color: $color-yellow;
+        }
+
         .header {
             margin: 40px 0;
 
