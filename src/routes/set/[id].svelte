@@ -4,8 +4,7 @@
     export async function load({ page }: LoadInput){
         return {
             props: {
-                setId: page.params.id,
-                cardsList: []
+                setId: page.params.id
             }
         }
     }
@@ -24,9 +23,14 @@
         isLoaded: boolean
     }
 
+    interface ISetRequest {
+        data: ICard[],
+        totalCount: number,
+        page: number
+    }
+
     // Get props :
     export let setId: string;
-    export let cardsList: ICard[];
 
     // Bind div variables :
     let serieDiv: HTMLDivElement;
@@ -34,7 +38,8 @@
 
     // Card loading configuration :
     const pageSize = 50;
-
+    
+    let currentCardCount = 0;
     let totalCard: number;
     let nextPage: INextPage;
 
@@ -51,6 +56,7 @@
         isLoaded: true
     }, setId;
     $: reloadPage(), setId;
+    $: currentCardCount = 0, setId;
 
     // Functions :
     async function reloadPage(){
@@ -66,12 +72,23 @@
 
     async function loadCards(page = 1){
         jsonFetch<any>(Endpoints.cards + "?page=" + page + "&pageSize=" + pageSize + "&q=set.id:" + setId)
-        .then(json => {
-            cardsList = cardsList.concat(json.data);
+        .then((json: ISetRequest) => {
+            // Add news cards :
+            if(cardsDiv){
+                json.data.forEach((element: ICard) => {
+                    new Card({
+                        target: cardsDiv, 
+                        props: { card: element }
+                    });
+                });
+            }
 
+            // Get current card loaded and total card count for this set :
+            currentCardCount += json.data.length;
             totalCard = json.totalCount;
 
-            nextPage.end = cardsList.length >= totalCard;
+            // Update next page config :
+            nextPage.end = currentCardCount >= totalCard;
             nextPage.next = json.page + 1;
             nextPage.isLoaded = false;
         });
@@ -95,22 +112,18 @@
 </svelte:head>
 
 <div class="serie" on:scroll={scrollLoader} bind:this={serieDiv}>
-    <p id="tgm">{cardsList.length}/{totalCard}</p>
+    <p id="tgm">{currentCardCount}/{totalCard}</p>
 
     {#if $currentSet}
         <img src={$currentSet.images.logo} alt="serie logo" class="header">
     {/if}
 
     <div class="cards" bind:this={cardsDiv}>
-        {#each cardsList as card}
-            <Card card={card}/>
-        {/each}
+        <!-- Card place -->
+    </div>
 
-        {#if cardsList.length < totalCard}
-            <div class="load">
-                <img src="/img/loading.svg" alt="loading">    
-            </div>
-        {/if}
+    <div class={"load " + (currentCardCount < totalCard ? "" : "not-active")}>
+        <img src="/img/loading.svg" alt="loading">    
     </div>
 </div>
 
@@ -159,6 +172,10 @@
             display: flex;
             align-items: center;
             justify-content: center;
+        }
+
+        .not-active {
+            display: none;
         }
     }
 </style>
