@@ -4,11 +4,9 @@
 
 	export async function load(){
         try {
-            const json = await jsonFetch<any>(Endpoints.sets);
-
             return {
                 props: {
-                    sets: json.data
+                    sets: (await jsonFetch<any>(Endpoints.sets)).data
                 }
             }
         } catch(err){
