@@ -8,7 +8,9 @@
         "/" + card.set.id.toUpperCase() + "_FR_" + card.number + ".png";
 </script>
 
-<img src={card.images.small} alt="{card.name} card" loading="lazy" transition:fade>
+<a href={"/card/" + card.id}>
+    <img src={card.images.small} alt="{card.name} card" loading="lazy" transition:fade>
+</a>
 
 <style>
     img {
