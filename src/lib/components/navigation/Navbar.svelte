@@ -4,7 +4,8 @@
 
     // Pages :
     const navItems = [
-        {name: "Home", route: "/"}
+        { name: "Home", route: "/" },
+        { name: "About", route: "/about" }
     ];
 
     // Get current active page :
