@@ -14,7 +14,7 @@
         } catch(err){
             return {
                 status: 400,
-                error: new Error(err)
+                error: new Error("Loading series list failed")
             }
         }
 	}
