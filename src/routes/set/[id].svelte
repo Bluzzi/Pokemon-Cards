@@ -34,7 +34,6 @@
     export let setId: string;
 
     // Bind div variables :
-    let serieDiv: HTMLDivElement;
     let cardsDiv: HTMLDivElement;
 
     // Card loading configuration :
@@ -110,7 +109,7 @@
     <title>Pokemon Cards - {$currentSet?.series}</title>
 </svelte:head>
 
-<div class="serie" on:scroll={scrollLoader} bind:this={serieDiv}>
+<div class="set" on:scroll={scrollLoader}>
     {#if $currentSet && currentCardCount > 0}
         <img src={$currentSet.images.logo} alt="serie logo" class="header" in:fly={{ y: -200 }}>
     {/if}
@@ -125,7 +124,7 @@
 </div>
 
 <style>
-    .serie {
+    .set {
         display: flex;
         align-items: center;
         flex-direction: column;
