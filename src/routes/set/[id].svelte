@@ -106,7 +106,7 @@
 </script>
 
 <svelte:head>
-    <title>Pokemon Cards - {$currentSet?.series}</title>
+    <title>Pokemon Cards - {$currentSet?.name}</title>
 </svelte:head>
 
 <div class="set" on:scroll={scrollLoader}>
