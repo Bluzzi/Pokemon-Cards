@@ -134,9 +134,9 @@
 
         overflow-y: scroll;
 
-        .header {
-            margin: 40px 0;
+        padding: 55px 0;
 
+        .header {
             width: 450px;
 
             @media (max-width: $responsive-bp-tablet) {
