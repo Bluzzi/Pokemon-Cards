@@ -4,6 +4,7 @@
     import type { LoadInput } from "@sveltejs/kit";
 
     export async function load({ page }: LoadInput){
+        console.log(Endpoints.cards + "?q=id:" + page.params.id); // TODO : remove this
         try {
             return {
                 props: {
@@ -25,6 +26,10 @@
 
     export let card: ICard;
 </script>
+
+<svelte:head>
+    <title>Pokemon Cards - {card.name}</title>
+</svelte:head>
 
 <div class="card">
     <img 
