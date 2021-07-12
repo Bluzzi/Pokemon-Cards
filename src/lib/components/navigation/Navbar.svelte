@@ -37,7 +37,7 @@
 
         padding: 0 5%;
 
-        height: 60px;
+        height: $navbar-height;
 
         background-color: $color-primary;
 
