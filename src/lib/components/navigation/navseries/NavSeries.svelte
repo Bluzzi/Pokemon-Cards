@@ -131,7 +131,7 @@
 
         z-index: $z-serie-menu;
 
-        transition: all 0.5s;
+        transition: transform 0.5s;
     }
 
     .nav-active {
