@@ -38,13 +38,11 @@
     </div>
 </div>
 
-<footer>
-    <p>Pokémon Cards - Created by the <a href="https://royaume.world">Royaume</a></p>
-</footer>
+<span class="footer-line"></span>
 
 <style>
     .content {
-        height: calc(100vh - 60px - 40px);
+        height: calc(100vh - #{$navbar-height} - #{$footer-line-height});
         width: 100%;
         
         display: flex;
@@ -52,30 +50,17 @@
         .page {
             width: inherit;
 
-            @media (max-width: $responsive-bp-tablet){
-                padding: 30px $space-4;
-            }
-
             display: flex;
             justify-content: center;
         }
     }
 
-    footer {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+    .footer-line {
+        display: block;
+
+        height: $footer-line-height;
+        width: 100%;
 
         background-color: $color-primary;
-
-        height: 40px;
-
-        p, a {
-            color: white;
-        }
-        
-        a {
-            text-decoration: underline;
-        }
     }
 </style>
