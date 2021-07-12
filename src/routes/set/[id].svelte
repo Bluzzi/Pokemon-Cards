@@ -70,7 +70,7 @@
 
     async function loadCards(page = 1){
         jsonFetch<any>(Endpoints.cards + "?page=" + page + "&pageSize=" + pageSize + "&q=set.id:" + setId)
-        .then((json: ISetRequest) => {
+            .then((json: ISetRequest) => {
             // Add news cards :
             if(cardsDiv){
                 json.data.forEach((element: ICard) => {
