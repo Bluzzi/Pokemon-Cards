@@ -145,7 +145,7 @@
         }
 
         .cards {
-            max-width: 310px * 3;
+            max-width: 310px * 8;
 
             display: flex;
             justify-content: center;
