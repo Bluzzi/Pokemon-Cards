@@ -72,7 +72,7 @@
         height: $bar-width;
         width: $bar-width;
 
-        margin: 10px;
+        margin: 4px 13px;
         padding: 10px;
 
         display: flex;
@@ -102,7 +102,7 @@
             transition: all 0.5s;
         }
 
-        @media (min-width: $responsive-bp-mobile) {
+        @media (min-width: $responsive-bp-tablet) {
             display: none;
         }
     }
@@ -147,7 +147,7 @@
     }
 
     .nav-inactive {
-        @media (max-width: $responsive-bp-mobile) {
+        @media (max-width: $responsive-bp-tablet) {
             position: fixed;
 
             transform: translateX(100vw);
