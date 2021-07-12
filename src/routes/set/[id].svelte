@@ -129,7 +129,7 @@
         align-items: center;
         flex-direction: column;
 
-        width: 100%;
+        width: inherit;
 
         overflow-y: scroll;
 
