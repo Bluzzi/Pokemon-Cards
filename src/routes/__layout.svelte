@@ -21,32 +21,18 @@
 </script>
 
 <script>
-    import Navbar from "$lib/components/Navbar.svelte";
-    import SerieSet from "$lib/components/elements/SerieSets.svelte";
+    import Navbar from "$lib/components/navigation/Navbar.svelte";
+    import NavSeries from "$lib/components/navigation/navseries/NavSeries.svelte";
     import type { ISet } from "$lib/pokemontcg/interfaces/Set";
 
     export let sets: ISet[];
-    const setsBySeries: Record<string, ISet[]> = {};
-
-    sets.forEach(set => {
-        if(setsBySeries[set.series]){
-            setsBySeries[set.series].push(set);
-        } else {
-            setsBySeries[set.series] = [set];
-        }
-    });
-
-    const series = Object.keys(setsBySeries).reverse();
 </script>
 
 <Navbar/>
 
 <div class="content">
-    <div class="nav-sets">
-        {#each series as serie, i}
-            <SerieSet serie={serie} sets={setsBySeries[serie]} isOpen={i === 0}/>
-        {/each}
-    </div>
+    <NavSeries sets={sets}/>
+    
     <div class="page">
         <slot></slot>
     </div>
@@ -62,16 +48,6 @@
         width: 100%;
         
         display: flex;
-
-        .nav-sets {
-            width: max-content;
-
-            background-color: $color-white;
-
-            overflow-y: scroll;
-
-            margin: 0;
-        }
 
         .page {
             width: inherit;
