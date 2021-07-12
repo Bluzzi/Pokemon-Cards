@@ -29,14 +29,17 @@
 
     {#if isOpen}
         {#each sets as set}
-            <p transition:fly={{y: -15, duration: 500}}>
-                <a 
-                class={$currentSet && $currentSet.id === set.id ? "active" : ""} 
-                on:click={() => updateSet(set)} 
-                href="/set/{set.id}">
-                    {set.name}
-                </a>
-            </p>
+            <div class="set">
+                <img src={set.images.symbol} alt="set logo">
+                <p transition:fly={{y: -15, duration: 500}}>    
+                    <a 
+                    class={$currentSet && $currentSet.id === set.id ? "active" : ""} 
+                    on:click={() => updateSet(set)} 
+                    href="/set/{set.id}">
+                        {set.name}
+                    </a>
+                </p>
+            </div>
         {/each}
     {/if}
 </div>
@@ -45,7 +48,7 @@
     .serie {
         margin: 30px 20px;
 
-        h3, p {
+        h3, .set {
             cursor: pointer;
         }
 
@@ -66,18 +69,32 @@
             }
         }
 
-        p {
-            font-size: 0.9em;
-            
+        .set {
+            display: flex;
+            align-items: center;
+
             margin-left: 10px;
+            
+            p {
+                font-size: 0.9em;
 
-            a {
-                text-decoration: none;
-                color: $color-gray;
+                margin: 6px 0;
 
-                &:hover, &.active {
-                    border-bottom: 4px solid $color-yellow;
+                a {
+                    text-decoration: none;
+                    color: $color-gray;
+
+                    &:hover, &.active {
+                        border-bottom: 4px solid $color-yellow;
+                    }
                 }
+            }
+
+            img {
+                height: 20px;
+                width: auto;
+
+                margin-right: 5px;
             }
         }
     }
