@@ -1,5 +1,5 @@
 <svelte:head>
-    <title>Pokemon Cards - Sets</title>
+    <title>Pokemon Cards</title>
 </svelte:head>
 
 <div class="first">
