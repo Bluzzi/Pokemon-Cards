@@ -128,6 +128,10 @@
         background-color: $color-white;
 
         overflow-y: scroll;
+
+        z-index: $z-serie-menu;
+
+        transition: all 0.5s;
     }
 
     .nav-active {
@@ -139,12 +143,14 @@
         height: calc(100% - #{$navbar-height} - #{$footer-line-height});
         width: 100vw;
 
-        z-index: $z-serie-menu;
+        transform: translateX(0);
     }
 
     .nav-inactive {
         @media (max-width: $responsive-bp-mobile) {
-            display: none;
+            position: fixed;
+
+            transform: translateX(100vw);
         }
     }
 </style>
