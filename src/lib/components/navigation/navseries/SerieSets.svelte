@@ -29,9 +29,9 @@
 
     {#if isOpen}
         {#each sets as set}
-            <div class="set">
+            <div class="set" transition:fly={{y: -15, duration: 500}}>
                 <img src={set.images.symbol} alt="set logo">
-                <p transition:fly={{y: -15, duration: 500}}>    
+                <p>    
                     <a 
                     class={$currentSet && $currentSet.id === set.id ? "active" : ""} 
                     on:click={() => updateSet(set)} 
