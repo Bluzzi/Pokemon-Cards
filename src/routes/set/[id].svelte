@@ -114,6 +114,17 @@
         <img src={$currentSet.images.logo} alt="serie logo" class="header" in:fly={{ y: -200 }}>
     {/if}
 
+    <p>Legacy Expanded : {$currentSet.legalities.expanded}</p>
+    <p>Legacy Standard : {$currentSet.legalities.standard}</p>
+    <p>Legacy Unlimited : {$currentSet.legalities.unlimited}</p>
+    <p>Name : {$currentSet.name}</p>
+    <p>Printed total : {$currentSet.printedTotal}</p>
+    <p>PtcGO code : {$currentSet.ptcgoCode}</p>
+    <p>Release date : {$currentSet.releaseDate}</p>
+    <p>Serie : {$currentSet.series}</p>
+    <p>Total : {$currentSet.total}</p>
+    <p>Updated at : {$currentSet.updatedAt}</p>
+
     <div class="cards" bind:this={cardsDiv}>
         <!-- Card place -->
     </div>
