@@ -16,7 +16,7 @@
     import Endpoints from "$lib/pokemontcg/Endpoints";
     import { currentSet } from "$lib/stores/Store";
     import type { ICard } from "$lib/pokemontcg/interfaces/Card";
-    import { fly } from "svelte/transition";
+    import { fly, fade } from "svelte/transition";
 
     interface INextPage {
         end: boolean,
@@ -111,19 +111,19 @@
 
 <div class="set" on:scroll={scrollLoader}>
     {#if $currentSet && currentCardCount > 0}
-        <img src={$currentSet.images.logo} alt="serie logo" class="header" in:fly={{ y: -200 }}>
-    {/if}
+        <img src={$currentSet.images.logo} alt="serie logo" class="set-logo" in:fly={{ y: -200 }}>
 
-    <p>Legacy Expanded : {$currentSet.legalities.expanded}</p>
-    <p>Legacy Standard : {$currentSet.legalities.standard}</p>
-    <p>Legacy Unlimited : {$currentSet.legalities.unlimited}</p>
-    <p>Name : {$currentSet.name}</p>
-    <p>Printed total : {$currentSet.printedTotal}</p>
-    <p>PtcGO code : {$currentSet.ptcgoCode}</p>
-    <p>Release date : {$currentSet.releaseDate}</p>
-    <p>Serie : {$currentSet.series}</p>
-    <p>Total : {$currentSet.total}</p>
-    <p>Updated at : {$currentSet.updatedAt}</p>
+        <div class="information" in:fade>
+            <img src={$currentSet.images.symbol} alt={$currentSet.name + " symbol"}>
+
+            <div class="name-and-release">
+                <h3>{$currentSet.series} <span>/</span> {$currentSet.name}</h3>
+
+                <p>Released {$currentSet.releaseDate}</p>
+                <p>Number of cards : {$currentSet.total}</p>
+            </div>
+        </div>
+    {/if}
 
     <div class="cards" bind:this={cardsDiv}>
         <!-- Card place -->
@@ -146,11 +146,53 @@
 
         padding: 55px 0;
 
-        .header {
+        .set-logo {
             width: 450px;
 
             @media (max-width: $responsive-bp-tablet) {
                 width: 95%;
+            }
+        }
+
+        .information {
+            margin: 44px 0;
+            padding: 15px 20px;
+
+            display: flex;
+            align-items: center;
+
+            background-color: rgba($color: #f1f1f12f, $alpha: 1.0);
+
+            border-radius: 20px;
+
+            box-shadow: 0 0 10px rgba($color: #000000, $alpha: 0.1);
+
+            img {
+                height: 50px;
+                width: auto;
+
+                margin-right: 30px;
+            }
+
+            h3 {
+                margin: 10px 0;
+
+                font-size: 1.1em;
+
+                display: flex;
+                align-items: center;
+
+                span {
+                    margin: 0 6px;
+
+                    font-size: 1.3em;
+                }
+            }
+
+            p {
+                margin: 3px 0;
+
+                color: $color-gray;
             }
         }
 
