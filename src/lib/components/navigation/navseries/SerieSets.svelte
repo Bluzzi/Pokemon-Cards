@@ -9,6 +9,8 @@
     export let sets: ISet[];
     export let isOpen = false;
 
+    sets = sets.reverse();
+
     let currentActiveSet: string;
 
     // First status update :
