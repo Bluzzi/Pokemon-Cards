@@ -2,20 +2,45 @@
     import type { ISet } from "$lib/pokemontcg/interfaces/Set";
     import { fly } from "svelte/transition";
     import { currentSet } from "$lib/stores/Store";
-    import { onDestroy } from "svelte";
+    import { onDestroy, onMount } from "svelte";
+    import { navigating } from "$app/stores";
 
     export let serie: string;
     export let sets: ISet[];
     export let isOpen = false;
 
-    const unSubscriber = currentSet.subscribe(value => {
+    let currentActiveSet: string;
+
+    // First status update :
+    onMount(() => {
         sets.forEach(set => {
-            if(value && value.id === set.id) isOpen = true;
+            if(location && location.pathname.includes(set.id)){
+                isOpen = true;
+                currentActiveSet = set.id;
+            }
         });
+    });
+
+    // Status updates :
+    const unSubscriber = navigating.subscribe(value => {
+        if(!value) return;
+        
+        let noResult = true;
+
+        sets.forEach(set => {
+            if(value && value.to.path.includes(set.id)){
+                isOpen = true;
+                currentActiveSet = set.id;
+                noResult = false;
+            }
+        });
+
+        if(noResult) currentActiveSet = ""; 
     });
 
     onDestroy(unSubscriber);
     
+    // Functions :
     function updateSet(set: ISet){
         currentSet.set(set);
     }
@@ -33,7 +58,7 @@
                 <img src={set.images.symbol} alt="set logo">
                 <p>    
                     <a 
-                    class:active={$currentSet && $currentSet.id === set.id} 
+                    class:active={currentActiveSet && currentActiveSet === set.id} 
                     on:click={() => updateSet(set)} 
                     href="/set/{set.id}">
                         {set.name}
