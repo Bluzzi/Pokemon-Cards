@@ -111,16 +111,20 @@
 
 <div class="set" on:scroll={scrollLoader}>
     {#if $currentSet && currentCardCount > 0}
-        <img src={$currentSet.images.logo} alt="serie logo" class="set-logo" in:fly={{ y: -200 }}>
+        <div class="header">
+            <img 
+                src={$currentSet.images.logo} 
+                alt="serie logo" class="set-logo" 
+                in:fly={{ x: -200 }}
+            >
 
-        <div class="information" in:fade>
-            <img src={$currentSet.images.symbol} alt={$currentSet.name + " symbol"}>
+            <span class="line"></span>
 
-            <div class="name-and-release">
-                <h3>{$currentSet.series} <span>/</span> {$currentSet.name}</h3>
-
-                <p>Released {$currentSet.releaseDate}</p>
-                <p>Number of cards : {$currentSet.total}</p>
+            <div class="information" in:fly={{ x: 200 }}>
+                <p><span>Serie name :</span> {$currentSet.series}</p>
+                <p><span>Set name :</span> {$currentSet.name}</p>
+                <p><span>Released date :</span> {$currentSet.releaseDate}</p>
+                <p><span>Number of cards :</span> {$currentSet.total}</p>
             </div>
         </div>
     {/if}
@@ -136,63 +140,63 @@
 
 <style>
     .set {
+        width: inherit;
+        
         display: flex;
         align-items: center;
         flex-direction: column;
-
-        width: inherit;
 
         overflow-y: scroll;
 
         padding: 55px 0;
 
-        .set-logo {
-            width: 450px;
-
-            @media (max-width: $responsive-bp-tablet) {
-                width: 95%;
-            }
-        }
-
-        .information {
-            margin: 44px 0;
-            padding: 15px 20px;
+        .header {
+            width: inherit;
 
             display: flex;
             align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
 
-            background-color: rgba($color: #f1f1f12f, $alpha: 1.0);
+            margin-bottom: 40px;
 
-            border-radius: 20px;
+            .set-logo {
+                width: 450px;
 
-            box-shadow: 0 0 10px rgba($color: #000000, $alpha: 0.1);
-
-            img {
-                height: 50px;
-                width: auto;
-
-                margin-right: 30px;
-            }
-
-            h3 {
-                margin: 10px 0;
-
-                font-size: 1.1em;
-
-                display: flex;
-                align-items: center;
-
-                span {
-                    margin: 0 6px;
-
-                    font-size: 1.3em;
+                @media (max-width: $responsive-bp-tablet) {
+                    width: 95%;
                 }
             }
 
-            p {
-                margin: 3px 0;
+            .line {
+                height: 150px;
+                width: 4px;
 
-                color: $color-gray;
+                background-color: $color-primary;
+
+                margin: 0 50px;
+            }
+
+            .information {
+                p {
+                    margin: 3px 0;
+
+                    color: $color-gray;
+
+                    span {
+                        font-weight: bold;
+                    }
+                }
+            }
+
+            @media (max-width: $responsive-bp-desktop) {
+                flex-direction: column;
+
+                .line {
+                    height: 0px;
+
+                    margin: 25px 0;
+                }
             }
         }
 
