@@ -25,7 +25,7 @@
 
     <div class="links">
         {#each navItems as item}
-            <a href={item.route} class={currentPage === item.route ? "active" : ""}>{item.name}</a>    
+            <a href={item.route} class:active={currentPage === item.route}>{item.name}</a>    
         {/each}
     </div>
 </nav>

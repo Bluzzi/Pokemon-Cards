@@ -129,7 +129,7 @@
         <!-- Card place -->
     </div>
 
-    <div class={"load " + (currentCardCount < totalCard && currentCardCount > 0 ? "" : "not-active")}>
+    <div class="load" class:not-active={currentCardCount >= totalCard || currentCardCount === 0}>
         <img src="/img/loading.svg" alt="loading">    
     </div>
 </div>

@@ -23,7 +23,7 @@
 
 <div class="serie">
     <h3 on:click={() => isOpen = !isOpen}>
-        <img src="/img/next.svg" alt="open {serie} serie" class={isOpen ? "is-open" : ""}>
+        <img src="/img/next.svg" alt="open {serie} serie" class:is-open={isOpen}>
         {serie}
     </h3>
 
@@ -33,7 +33,7 @@
                 <img src={set.images.symbol} alt="set logo">
                 <p>    
                     <a 
-                    class={$currentSet && $currentSet.id === set.id ? "active" : ""} 
+                    class:active={$currentSet && $currentSet.id === set.id} 
                     on:click={() => updateSet(set)} 
                     href="/set/{set.id}">
                         {set.name}
