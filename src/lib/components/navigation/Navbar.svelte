@@ -21,7 +21,7 @@
 </script>
 
 <nav>
-    <img src="/img/icon.png" alt="logo">
+    <h1>Pokemon Card</h1>
 
     <div class="links">
         {#each navItems as item}
@@ -36,15 +36,17 @@
         align-items: center;
         justify-content: space-between;
 
-        padding: 0 5%;
+        padding: 0 2%;
 
         height: $navbar-height;
 
         background-color: $color-primary;
 
-        img {
-            height: 80%;
-            width: auto;
+        h1 {
+            color: white;
+            font-size: 1.3em;
+
+            margin-right: 20px;
         }
 
         a {
