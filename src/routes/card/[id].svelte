@@ -4,7 +4,6 @@
     import type { LoadInput } from "@sveltejs/kit";
 
     export async function load({ page }: LoadInput){
-        console.log(Endpoints.cards + "?q=id:" + page.params.id); // TODO : remove this
         try {
             return {
                 props: {
@@ -39,14 +38,31 @@
         in:fly={{ x: -200, duration: 1000 }}>
 
     <div class="card-information" in:fly={{ x: 200, duration: 1000 }}>
-        <h3>{card.name}</h3>
-        <p>{card.supertype} - {card.subtypes.join(", ")}</p>
+        <div class="info-top">
+            <div class="top-left">
+                <h3>{card.name}</h3>
+                <p>{card.supertype} - {card.subtypes.join(", ")}</p>                
+            </div>
+
+            {#if card.supertype === "Pokémon"}
+                <div class="top-right">
+                    <p>HP {card.hp}</p>
+                    
+                    {#each card.types as type}
+                        <img 
+                            src={"/img/pokemon/element/" + type.toLowerCase() + ".png"} 
+                            alt={"element " + type}
+                        >
+                    {/each}
+                </div>
+            {/if}
+        </div>
 
         <hr>
 
         <p>Prices</p>
         <p><a href="/tgm">Buy here</a></p>
-        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsa id placeat laboriosam. Tenetur consequatur sapiente hic, magni tempora porro velit possimus beatae reiciendis ipsum dolor laudantium nihil commodi rerum animi!</p>
+        {JSON.stringify(card.tcgplayer)}
 
         <hr>
 
@@ -77,9 +93,18 @@
             height: 80%;
             width: 450px;
 
+            // Base :
             @media (max-width: $responsive-bp-mobile) {
                 height: auto;
                 width: 95%;
+            }
+
+            h3, p {
+                margin: 5px 0;
+            }
+
+            p {
+                font-size: 1.1em;
             }
 
             a {
@@ -92,6 +117,29 @@
                 height: 4px;
 
                 border: none;
+            }
+
+            // Parts :
+            .info-top {
+                display: flex;
+                align-items: flex-start;
+                justify-content: space-between;
+
+                .top-left {
+                    // void
+                }
+
+                .top-right {
+                    display: flex;
+                    align-items: center;
+
+                    img {
+                        height: 25px;
+                        width: auto;
+
+                        margin-left: 6px;
+                    }
+                }
             }
         }
 
