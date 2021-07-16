@@ -21,7 +21,7 @@
 </script>
 
 <nav>
-    <h1>Pokemon Card</h1>
+    <h1>Pokemon Cards</h1>
 
     <div class="links">
         {#each navItems as item}
