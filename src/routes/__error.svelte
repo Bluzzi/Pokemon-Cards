@@ -16,9 +16,17 @@
 	export let message: string;
 </script>
 
+<svelte:head>
+	<title>Pokemon Cards - Error {errorCode}</title>
+</svelte:head>
+
 <div class="error">
-	<p>Error {errorCode}</p>
-	<p>{message}</p>
+	<img src="/img/pokemon/error-page.png" alt="pokémon error">
+	
+	<div class="description">
+		<p class="code">Error {errorCode}</p>
+		<p class="message">{message}</p>
+	</div>
 </div>
 
 <style>
@@ -26,10 +34,28 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		flex-direction: column;
+		align-content: center;
+		flex-wrap: wrap-reverse;
 
-		p {
-			margin: 5px;
+		img {
+			height: auto;
+			max-width: 100%;
+		}
+
+		.description {
+			p {
+				margin: 5px;
+
+				&.code {
+					font-weight: bold;
+					font-size: 2em;
+				}
+
+				&.message {
+					font-size: 1.3em;
+					color: $color-gray;
+				}
+			}
 		}
 	}
 </style>
