@@ -26,7 +26,7 @@
     // Status updates :
     const unSubscriber = navigating.subscribe(value => {
         if(!value) return;
-        
+
         let noResult = true;
 
         sets.forEach(set => {
