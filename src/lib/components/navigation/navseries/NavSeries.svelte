@@ -28,7 +28,9 @@
             location.pathname.substring("/set/".length) : null;
 
         if(currentSetId){
-            openSerieName = sets.filter(set => set.id === currentSetId)[0].id;
+            const filter = sets.filter(set => set.id === currentSetId);
+
+            if(filter.length > 0) openSerieName = filter[0].id;
         } else {
             openSerieName = series[0];
         }
