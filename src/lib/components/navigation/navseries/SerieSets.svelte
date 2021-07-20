@@ -16,7 +16,7 @@
     // First status update :
     onMount(() => {
         sets.forEach(set => {
-            if(location && location.pathname.includes(set.id)){
+            if(parseSetPath(set, location.pathname)){
                 isOpen = true;
                 currentActiveSet = set.id;
             }
@@ -30,7 +30,7 @@
         let noResult = true;
 
         sets.forEach(set => {
-            if(value && value.to.path.includes(set.id)){
+            if(value && parseSetPath(set, value.to.path)){
                 isOpen = true;
                 currentActiveSet = set.id;
                 noResult = false;
@@ -45,6 +45,10 @@
     // Functions :
     function updateSet(set: ISet){
         currentSet.set(set);
+    }
+
+    function parseSetPath(set: ISet, pathname: string) : boolean {
+        return pathname.match(new RegExp("\/" + set.id + "($|-)")) !== null;
     }
 </script>
 
