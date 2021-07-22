@@ -37,7 +37,7 @@
             }
         });
 
-        if(noResult) currentActiveSet = ""; 
+        if(noResult) currentActiveSet = "";
     });
 
     onDestroy(unSubscriber);
