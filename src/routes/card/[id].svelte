@@ -123,6 +123,8 @@
                 height: 4px;
 
                 border: none;
+
+                margin: 20px 0;
             }
 
             // Parts :
