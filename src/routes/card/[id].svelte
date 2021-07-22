@@ -125,10 +125,6 @@
                 align-items: flex-start;
                 justify-content: space-between;
 
-                .top-left {
-                    // void
-                }
-
                 .top-right {
                     display: flex;
                     align-items: center;
