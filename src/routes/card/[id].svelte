@@ -60,9 +60,15 @@
 
         <hr>
 
-        <p>Prices</p>
-        <p><a href="/tgm">Buy here</a></p>
-        {JSON.stringify(card.tcgplayer)}
+        <div class="info-buy">
+            <p>Buy this card :</p>
+            
+            <div class="merchants">
+                <a href={card.tcgplayer.url} target="_blank">TCG Player</a>
+                <a href={"https://www.cardmarket.com/fr/Pokemon/Products/Singles/Base-Set/" + card.name + "-" + card.id.replace("-", "")} target="_blank">CardMarket</a>
+                <a href={"https://www.ebay.fr/sch/i.html?_nkw=" + encodeURIComponent(card.name)} target="_blank">eBay</a>
+            </div>
+        </div>
 
         <hr>
 
@@ -134,6 +140,39 @@
                         width: auto;
 
                         margin-left: 6px;
+                    }
+                }
+            }
+
+            .info-buy {
+                p {
+                    margin-bottom: 15px;
+                }
+
+                .merchants {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+
+                    a {
+                        background-color: $color-primary;
+
+                        width: 31%;
+
+                        padding: 12px 0;
+
+                        border: 3px solid $color-primary;
+                        border-radius: 3px;
+
+                        color: white;
+                        text-align: center;
+                        text-decoration: none;
+
+                        &:hover {
+                            background-color: transparent;
+                            
+                            color: $color-primary;
+                        }
                     }
                 }
             }
