@@ -3,9 +3,6 @@
     import { fade } from "svelte/transition";
 
     export let card: ICard;
-
-    const link = "https://assets.pokemon.com/assets/cms2-fr-fr/img/cards/web/" + card.set.id.toUpperCase() +
-        "/" + card.set.id.toUpperCase() + "_FR_" + card.number + ".png";
 </script>
 
 <a href={"/card/" + card.id}>
