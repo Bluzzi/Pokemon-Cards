@@ -50,7 +50,7 @@
                     
                     {#each card.types as type}
                         <img 
-                            src={"/img/pokemon/element/" + type.toLowerCase() + ".png"} 
+                            src={"/img/pokemon/elements/" + type.toLowerCase() + ".png"} 
                             alt={"element " + type}
                         >
                     {/each}
