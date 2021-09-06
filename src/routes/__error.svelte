@@ -43,6 +43,8 @@
 		}
 
 		.description {
+			max-width: $responsive-bp-mobile;
+
 			p {
 				margin: 5px;
 
