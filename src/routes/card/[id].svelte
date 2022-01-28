@@ -1,13 +1,13 @@
-<script context="module">
+<script context="module" lang="ts">
     import Endpoints from "$lib/pokemontcg/Endpoints";
     import { jsonFetch } from "$lib/utils/Fetch";
     import type { LoadInput } from "@sveltejs/kit";
 
-    export async function load({ page }: LoadInput){
+    export async function load({ params }: LoadInput){
         try {
             return {
                 props: {
-                    card: (await jsonFetch<any>(Endpoints.cards + "?q=id:" + page.params.id)).data[0]
+                    card: (await jsonFetch<any>(Endpoints.cards + "?q=id:" + params.id)).data[0]
                 }
             }
         } catch(err){
@@ -19,7 +19,7 @@
     }
 </script>
 
-<script>
+<script lang="ts">
     import type { ICard } from "$lib/pokemontcg/interfaces/Card";
     import { fly } from "svelte/transition";
 
@@ -78,7 +78,7 @@
     </div>
 </div>
 
-<style>
+<style lang="scss">
     .card {
         width: inherit;
 

@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import type { ICard } from "$lib/pokemontcg/interfaces/Card";
     import { fade } from "svelte/transition";
 
@@ -9,7 +9,7 @@
     <img src={card.images.small} alt="{card.name} card" loading="lazy" transition:fade>
 </a>
 
-<style>
+<style lang="scss">
     img {
         margin: 30px;
 

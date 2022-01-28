@@ -1,4 +1,4 @@
-<script context="module">
+<script context="module" lang="ts">
     import Endpoints from "$lib/pokemontcg/Endpoints";
     import { jsonFetch } from "$lib/utils/Fetch";
 
@@ -20,7 +20,7 @@
     }
 </script>
 
-<script>
+<script lang="ts">
     import Card from "$lib/components/elements/Card.svelte";
     import type { ICard } from "$lib/pokemontcg/interfaces/Card";
 
@@ -43,7 +43,7 @@
     </div>
 </div>
 
-<style>
+<style lang="scss">
     .container {
         width: inherit;
 

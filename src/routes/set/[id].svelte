@@ -1,16 +1,16 @@
-<script context="module">
+<script context="module" lang="ts">
     import type { LoadInput } from "@sveltejs/kit";
 
-    export async function load({ page }: LoadInput){
+    export async function load({ params }: LoadInput){
         return {
             props: {
-                setId: page.params.id
+                setId: params.id
             }
         }
     }
 </script>
 
-<script>
+<script lang="ts">
     import Card from "$lib/components/elements/Card.svelte";
     import { jsonFetch } from "$lib/utils/Fetch";
     import Endpoints from "$lib/pokemontcg/Endpoints";
@@ -138,7 +138,7 @@
     </div>
 </div>
 
-<style>
+<style lang="scss">
     .set {
         width: inherit;
         

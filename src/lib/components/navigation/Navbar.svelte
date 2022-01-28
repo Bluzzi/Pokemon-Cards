@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import { onDestroy, onMount } from "svelte";
     import { navigating } from "$app/stores";
 
@@ -43,7 +43,7 @@
     </div>
 </nav>
 
-<style>
+<style lang="scss">
     nav {
         display: flex;
         align-items: center;

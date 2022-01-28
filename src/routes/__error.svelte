@@ -1,4 +1,4 @@
-<script context="module">
+<script context="module" lang="ts">
 	import type { LoadOutput } from "@sveltejs/kit";
 
 	export function load({ error, status }: LoadOutput){
@@ -11,7 +11,7 @@
 	}
 </script>
 
-<script>
+<script lang="ts">
 	export let errorCode: number;
 	export let message: string;
 </script>
@@ -29,7 +29,7 @@
 	</div>
 </div>
 
-<style>
+<style lang="scss">
 	.error {
 		display: flex;
 		align-items: center;

@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     type HoverStyle = "brightness" | "void";
 
     export let href: string = "";
@@ -13,7 +13,7 @@
     <slot></slot>
 </a>
 
-<style>
+<style lang="scss">
     a {
         display: flex;
         align-items: center;

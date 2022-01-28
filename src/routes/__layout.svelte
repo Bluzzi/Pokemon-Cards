@@ -1,4 +1,4 @@
-<script context="module">
+<script context="module" lang="ts">
     import Endpoints from "$lib/pokemontcg/Endpoints";
     import { jsonFetch } from "$lib/utils/Fetch";
 
@@ -18,7 +18,7 @@
 	}
 </script>
 
-<script>
+<script lang="ts">
     import Navbar from "$lib/components/navigation/Navbar.svelte";
     import NavSeries from "$lib/components/navigation/navseries/NavSeries.svelte";
     import type { ISet } from "$lib/pokemontcg/interfaces/Set";
@@ -38,7 +38,7 @@
 
 <span class="footer-line"></span>
 
-<style>
+<style lang="scss">
     .content {
         height: calc(100vh - #{$navbar-height} - #{$footer-line-height});
         width: 100%;
@@ -50,6 +50,8 @@
 
             display: flex;
             justify-content: center;
+
+            background-image: url("/img/funky-lines.png");
         }
     }
 

@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import type { ISet } from "$lib/pokemontcg/interfaces/Set";
     import { fly } from "svelte/transition";
     import { currentSet } from "$lib/stores/Store";
@@ -75,7 +75,7 @@
     {/if}
 </div>
 
-<style>
+<style lang="scss">
     .serie {
         margin: 30px 20px;
 

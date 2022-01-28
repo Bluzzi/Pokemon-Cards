@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import type { ISet } from "$lib/pokemontcg/interfaces/Set";
     import SerieSets from "$lib/components/navigation/navseries/SerieSets.svelte";
     import { onDestroy, onMount } from "svelte";
@@ -63,7 +63,7 @@
     {/each}
 </div>
 
-<style>
+<style lang="scss">
     // Burger :
     $bar-margin: 8px;
 
